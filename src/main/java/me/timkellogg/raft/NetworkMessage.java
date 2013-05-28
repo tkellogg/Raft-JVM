@@ -14,11 +14,9 @@ import java.util.UUID;
  */
 public class NetworkMessage {
     private final byte[] message;
-    private final SocketAddress[] addresses;
     private final UUID messageId = UUID.randomUUID();
 
-    public NetworkMessage(byte[] message, SocketAddress[] addresses) {
-        this.addresses = addresses;
+    public NetworkMessage(byte[] message) {
 
         byte[] encodedMessage = new byte[message.length + 16];
         System.arraycopy(getBytes(messageId), 0, encodedMessage, 0, 16);
@@ -35,10 +33,6 @@ public class NetworkMessage {
 
     public byte[] getMessage() {
         return message;
-    }
-
-    public SocketAddress[] getAddresses() {
-        return addresses;
     }
 
     public UUID getMessageId() {
